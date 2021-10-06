@@ -1,0 +1,25 @@
+{
+  "name": "dd-synthetics",
+  "version": "1.0.0",
+  "author": "OpenActions",
+  "description": "DataDog Synthetics GitHub Action",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
+    "await-to-js": "^3.0.0",
+    "execa": "^5.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenActions/dd-synthetics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenActions/dd-synthetics/issues"
+  },
+  "homepage": "https://github.com/OpenActions/dd-synthetics#readme"
+}
