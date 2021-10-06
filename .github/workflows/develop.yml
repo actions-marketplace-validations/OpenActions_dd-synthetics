@@ -4,12 +4,7 @@ on: workflow_dispatch
 
 jobs:
   dd_synthetics:
-    runs-on: {{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-
+    runs-on: ubuntu-latest
     steps: 
       - name: Checkout Repo
         uses: actions/checkout@v2
