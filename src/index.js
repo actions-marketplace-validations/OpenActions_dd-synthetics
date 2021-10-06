@@ -2,6 +2,14 @@ const core = require('@actions/core');
 const shell = require('execa');
 const { to } = require('await-to-js');
 
+const getArg = (arg, flag) => {
+  switch (typeof arg) {
+    case 'boolean': return arg ? flag : '';
+    case 'object': return arg.length ? `${flag}${val.join(flag)}` : '';
+    default: return `${flag}${arg}`;
+  }
+};
+
 async function run() {
   try {
     const datadogArgs = {
@@ -23,7 +31,8 @@ async function run() {
       const val = datadogArgs[key];
 
       if (!val && typeof val !== 'boolean') { return acc; }
-      acc += `${flag}${val instanceof Array ? val.join(flag) : val}`;
+
+      acc += getArg(val, flag);
       return acc;
     }, '');
 
