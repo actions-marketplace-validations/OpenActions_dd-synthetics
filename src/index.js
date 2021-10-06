@@ -35,7 +35,10 @@ async function run() {
       return acc;
     }, '');
 
-    const [shellError] = await to(shell.command(`datadog-ci synthetics run-tests${DD_ARGS}`));
+    const DD_CMD = `datadog-ci synthetics run-tests${DD_ARGS}`;
+    console.log(DD_CMD);
+
+    const [shellError] = await to(shell.command(DD_CMD));
     if (shellError) {
       throw shellError;
     }

@@ -61,4 +61,3 @@ runs:
         publicIds: ${{ inputs.publicIds }}
         search: ${{ inputs.search }}
         subdomain: ${{ inputs.subdomain }}
-        tunnel: ${{ inputs.tunnel }}
