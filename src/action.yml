@@ -2,26 +2,37 @@ name: DataDog Synthetics Sub Action
 description: 'Run DataDog Synthetics with Configurations'
 inputs:
   apiKey:
+    description: 'DataDog API Key'
     required: true
   appKey:
+    description: 'DataDog Application Key'
     required: true
   config:
+    description: 'DataDog Synthetics CI config file path'
     required: true
   datadogSite:
+    description: 'DataDog Host Site'
     required: true
   failOnCriticalErrors:
+    description: 'Set run to fail on critical errors'
     required: true
   failOnTimeout:
+    description: 'Set run to fail on timeout'
     required: true
   files:
+    description: 'Synthetic test run config files'
     required: true
   publicIds:
+    description: 'Synthetic test public IDs'
     required: true
   search: 
+    description: 'Search query'
     required: true
   subdomain:
+    description: 'Custom subdomain to access DataDog'
     required: true
   tunnel:
+    description: 'Open a websocket tunnel'
     required: true
 runs:
   using: 'node12'
