@@ -37,7 +37,7 @@ https://github.com/DataDog/datadog-ci/tree/master/src/commands/synthetics#api
 ## Example Usage
 
 ```yml
-uses: OpenActions/dd-synthetics@v1
+uses: OpenActions/dd-synthetics@v1.0.0-alpha
 with:
   apiKey: ${{ secrets.DD_API_KEY }}
   appKey: ${{ secrets.DD_APP_KEY }}
