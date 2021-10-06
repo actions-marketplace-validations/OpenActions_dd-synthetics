@@ -22,7 +22,7 @@ async function run() {
       const flag = ` --${key} `;
       const val = datadogArgs[key];
 
-      if (!val) { return acc; }
+      if (!val && typeof val !== 'boolean') { return acc; }
       acc += `${flag}${val instanceof Array ? val.join(flag) : val}`;
       return acc;
     }, '');

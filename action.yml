@@ -12,11 +12,11 @@ inputs:
   configPath:
     description: 'DataDog Synthetics CI config file path'
     required: false
-    default: 'datadog-ci.json'
+    default: ''
   datadogSite:
     description: 'DataDog Host Site'
     required: false
-    default: 'datadoghq.com'
+    default: ''
   failOnCriticalErrors:
     description: 'Set run to fail on critical errors'
     required: false
@@ -40,7 +40,7 @@ inputs:
   subdomain:
     description: 'Custom subdomain to access DataDog'
     required: false
-    default: 'app'
+    default: ''
   tunnel:
     description: 'Open a websocket tunnel'
     required: false
