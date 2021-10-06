@@ -1,5 +1,9 @@
 name: DataDog Synthetics Action
 description: 'Run DataDog Synthetics with Configurations'
+author: OpenActions
+branding:
+  icon: 'activity'  
+  color: 'blue'
 inputs:
   apiKey:
     description: 'DataDog API Key'
