@@ -26,7 +26,8 @@ async function run() {
     };
 
     const DD_ARGS = Object.keys(datadogArgs).reduce((acc, key) => {
-      const flag = ` --${key} `;
+      const isBoolean = typeof val === 'boolean';
+      const flag = ` --${key}${isBoolean ? '' : ' '}`;
       const val = datadogArgs[key];
 
       if (!val && typeof val !== 'boolean') { return acc; }
