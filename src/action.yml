@@ -31,9 +31,6 @@ inputs:
   subdomain:
     description: 'Custom subdomain to access DataDog'
     required: true
-  tunnel:
-    description: 'Open a websocket tunnel'
-    required: true
 runs:
   using: 'node12'
   main: 'index.js'

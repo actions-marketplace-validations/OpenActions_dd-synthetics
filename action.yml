@@ -41,10 +41,7 @@ inputs:
     description: 'Custom subdomain to access DataDog'
     required: false
     default: ''
-  tunnel:
-    description: 'Open a websocket tunnel'
-    required: false
-    default: false
+    
 runs:
   using: 'composite'
   steps:

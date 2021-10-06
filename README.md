@@ -19,7 +19,6 @@ All inputs for the action are not required but the ones that are marked are requ
 | publicIds            | Array   |                    | ''                | Synthetic test public IDs that is set as a multiline input                                                         |
 | search               | String  |                    | ''                | Synthetic test search query which is comma separated (Ex: 'tag:e2e-tests, env:prod')                               |
 | subdomain            | String  |                    | 'app'             | Custom subdomain to access DataDog which can also be set by setting `DATADOG_SUBDOMAIN` as an environment variable |
-| tunnel               | Boolean |                    | False             | Open a websocket tunnel (Not Recommended)                                                                          |
 
 ## Environment Variables
 https://github.com/DataDog/datadog-ci/tree/master/src/commands/synthetics#setup

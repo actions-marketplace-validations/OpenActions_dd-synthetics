@@ -23,7 +23,6 @@ async function run() {
       'public-id': core.getMultilineInput('publicIds'),
       search: core.getInput('search'),
       subdomain: core.getInput('subdomain'),
-      tunnel: core.getInput('tunnel'),
     };
 
     const DD_ARGS = Object.keys(datadogArgs).reduce((acc, key) => {
