@@ -1,16 +1,67 @@
-# action.yml
-name: 'DataDog Synthetics Action'
-description: 'Run DataDog Synthetics with configurations'
+name: DataDog Synthetics Action
+description: 'Run DataDog Synthetics with Configurations'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  apiKey:
+    description: 'DataDog API Key'
+    required: false
+    default: ''
+  appKey:
+    description: 'DataDog Application Key'
+    required: false
+    default: ''
+  configPath:
+    description: 'DataDog Synthetics CI config file path'
+    required: false
+    default: 'datadog-ci.json'
+  datadogSite:
+    description: 'DataDog Host Site'
+    required: false
+    default: 'datadoghq.com'
+  failOnCriticalErrors:
+    description: 'Set run to fail on critical errors'
+    required: false
+    default: false
+  failOnTimeout:
+    description: 'Set run to fail on timeout'
+    required: false
+    default: true
+  files:
+    description: 'Synthetic test run config files'
+    required: false
+    default: ''
+  publicIds:
+    description: 'Synthetic test public IDs'
+    required: false
+    default: ''
+  search: 
+    description: 'Search query'
+    required: false
+    default: ''
+  subdomain:
+    description: 'Custom subdomain to access DataDog'
+    required: false
+    default: 'app'
+  tunnel:
+    description: 'Open a websocket tunnel'
+    required: false
+    default: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  using: 'composite'
+  steps:
+    - name: Install DataDog CI
+      run: npm i -g @datadog/datadog-ci
+      shell: bash
+    - name: Run DataDog Action (JS)
+      uses: ./src
+      with:
+        apiKey: ${{ inputs.apiKey }}
+        appKey: ${{ inputs.appKey }}
+        config: ${{ inputs.configPath }}
+        datadogSite: ${{ inputs.datadogSite }}
+        failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
+        failOnTimeout: ${{ inputs.failOnTimeout }}
+        files: ${{ inputs.files }}
+        publicIds: ${{ inputs.publicIds }}
+        search: ${{ inputs.search }}
+        subdomain: ${{ inputs.subdomain }}
+        tunnel: ${{ inputs.tunnel }}
