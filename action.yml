@@ -58,7 +58,7 @@ runs:
         echo ${{ github.action_path }}
         IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
         echo "${PATH[-1]}"
-        if [ "${PATH[-1]}" != "" ]; then
+        if [ "${PATH[-1]}" != "." ] && [ "${PATH[-1]}" != "" ]; then
           echo "::set-output name=REF::${PATH[-1]}"
         else
           echo "::set-output name=REF::$GITHUB_SHA"
