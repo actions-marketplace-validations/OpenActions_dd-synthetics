@@ -49,14 +49,24 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    # - name: Install DataDog CI
-    #   run: npm i -g @datadog/datadog-ci
-    #   shell: bash
-    - name: Output Variables
-      run: |
-        echo ${{ github.action }}
-        echo ${{ github.action_path }}
+    - name: Install DataDog CI
+      run: npm i -g @datadog/datadog-ci
       shell: bash
+
+    - name: Get Action Version
+      run: |
+        echo ${{ github.action_path }}
+        IFS='/' read -r PATH <<< '${{ github.action_path }}'
+        echo $PATH[-1]
+      shell: bash
+
+    # - name: Checkout Actions Repo
+    #   uses: actions/checkout@v2
+    #   with:
+    #     repository: OpenActions/dd-synthetics
+    #     path: dd-synthetics
+    #     ref: ${{  }}
+      
     # - name: Run DataDog Action (JS)
     #   uses: OpenActions/dd-synthetics/src@
     #   with:
