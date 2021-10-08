@@ -43,3 +43,19 @@ with:
   appKey: ${{ secrets.DD_APP_KEY }}
   search: 'tag:e2e-tests'
 ```
+
+## Using JS Action
+
+You can also just use the JavaScript action by itself without the main action. However, you will need to install `@datadog/datadog-ci` NPM package globally in your workflow.
+
+```yml
+steps:
+  - name: Install DataDog CI
+    run: npm i -g @datadog/datadog-ci
+    
+  - uses: OpenActions/dd-synthetics/src@v1.0.0
+    with:
+      apiKey: ${{ secrets.DD_API_KEY }}
+      appKey: ${{ secrets.DD_APP_KEY }}
+      search: 'tag:e2e-tests'
+```

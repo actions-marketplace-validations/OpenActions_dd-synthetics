@@ -1,4 +1,4 @@
-name: Deploy
+name: JS Action Deploy
 
 on: workflow_dispatch
 
