@@ -74,10 +74,10 @@ runs:
 
     - name: Setup Config File
       run: |
-        if [ "${{ inputs.configPath }}" != "" && -f "${{ inputs.configPath }}" ]; then
+        if [ "${{ inputs.configPath }}" != "" ] && [ -f "${{ inputs.configPath }}" ]; then
           echo "Config file ${{ inputs.configPath }} exists"
           mv ${{ inputs.configPath }} OpenActions/dd-synthetics/src
-        elif [ "${{ inputs.configPath }}" = "" && -f "datadog-ci.json" ]; then
+        elif [ "${{ inputs.configPath }}" = "" ] && [ -f "datadog-ci.json" ]; then
           echo "Config file datadog-ci.json exists"
           mv datadog-ci.json OpenActions/dd-synthetics/src
         fi
