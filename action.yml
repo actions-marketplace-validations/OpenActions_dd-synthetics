@@ -62,18 +62,31 @@ runs:
       id: action-version
 
     - name: Checkout Actions Repo
+      if: ${{ steps.action-version.outputs.REF !== '' }}
       uses: actions/checkout@v2
       with:
         repository: OpenActions/dd-synthetics
-        path: dd-synthetics
+        path: OpenActions/dd-synthetics
         ref: ${{ steps.action-version.outputs.REF }}
-
-    - name: View Files
-      run: ls -la
-      shell: bash
       
     - name: Run DataDog Action (JS)
-      uses: ./dd-synthetics/src
+      if: ${{ steps.action-version.outputs.REF !== '' }}
+      uses: ./OpenActions/dd-synthetics/src
+      with:
+        apiKey: ${{ inputs.apiKey }}
+        appKey: ${{ inputs.appKey }}
+        config: ${{ inputs.configPath }}
+        datadogSite: ${{ inputs.datadogSite }}
+        failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
+        failOnTimeout: ${{ inputs.failOnTimeout }}
+        files: ${{ inputs.files }}
+        publicIds: ${{ inputs.publicIds }}
+        search: ${{ inputs.search }}
+        subdomain: ${{ inputs.subdomain }}
+
+    - name: Run Local DataDog Action (JS)
+      if: ${{ steps.action-version.outputs.REF === '' }}
+      uses: ./src
       with:
         apiKey: ${{ inputs.apiKey }}
         appKey: ${{ inputs.appKey }}
@@ -87,5 +100,5 @@ runs:
         subdomain: ${{ inputs.subdomain }}
 
     - name: Cleanup Actions Repo
-      run: rm -rf dd-synthetics
+      run: rm -rf OpenActions
       shell: bash

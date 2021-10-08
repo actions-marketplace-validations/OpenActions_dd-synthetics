@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: DataDog Synthetics Action
-        uses: OpenActions/dd-synthetics
+        uses: OpenActions/dd-synthetics@main
         with:
           apiKey: ${{ secrets.DD_API_KEY }}
           appKey: ${{ secrets.DD_APP_KEY }}
