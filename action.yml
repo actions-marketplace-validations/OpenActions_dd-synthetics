@@ -67,6 +67,10 @@ runs:
         repository: OpenActions/dd-synthetics
         path: dd-synthetics
         ref: ${{ steps.action-version.outputs.REF }}
+
+    - name: View Files
+      run: ls -la
+      shell: bash
       
     - name: Run DataDog Action (JS)
       uses: ./dd-synthetics/src
