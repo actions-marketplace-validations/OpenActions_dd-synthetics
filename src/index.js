@@ -39,7 +39,7 @@ async function run() {
     const DD_CMD = `datadog-ci synthetics run-tests${DD_ARGS}`;
     console.log('> ', DD_CMD);
 
-    const [shellError, output] = await to(shell.command(DD_CMD).stdout.pipe(process.stdout));
+    const [shellError, output] = await to(shell.command(DD_CMD));
     if (shellError) {
       throw shellError;
     }
