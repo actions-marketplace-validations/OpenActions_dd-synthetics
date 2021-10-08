@@ -3,6 +3,8 @@
 This is the GitHub Action wrapper for the DataDog CI synthetics command.<br>
 https://github.com/DataDog/datadog-ci/tree/master/src/commands/synthetics
 
+This action by default is a composite action that installs `@datadog/datadog-ci` for your workflow as well as runs the command with the appropriate arguments. You are able to just use the JavaScript action, but you will have to install the dependency yourself.
+
 ## Inputs
 
 All inputs for the action are not required but the ones that are marked are required for the CI command. You will be able to set the required inputs through environment variables instead of passing it into the action.
@@ -37,7 +39,7 @@ https://github.com/DataDog/datadog-ci/tree/master/src/commands/synthetics#api
 ## Example Usage
 
 ```yml
-uses: OpenActions/dd-synthetics@v1.0.0
+uses: OpenActions/dd-synthetics@v1.0.1
 with:
   apiKey: ${{ secrets.DD_API_KEY }}
   appKey: ${{ secrets.DD_APP_KEY }}
@@ -53,7 +55,7 @@ steps:
   - name: Install DataDog CI
     run: npm i -g @datadog/datadog-ci
     
-  - uses: OpenActions/dd-synthetics/src@v1.0.0
+  - uses: OpenActions/dd-synthetics/src@v1.0.1
     with:
       apiKey: ${{ secrets.DD_API_KEY }}
       appKey: ${{ secrets.DD_APP_KEY }}

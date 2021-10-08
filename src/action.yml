@@ -3,34 +3,44 @@ description: 'Run DataDog Synthetics with Configurations'
 inputs:
   apiKey:
     description: 'DataDog API Key'
-    required: true
+    required: false
+    default: ''
   appKey:
     description: 'DataDog Application Key'
-    required: true
-  config:
+    required: false
+    default: ''
+  configPath:
     description: 'DataDog Synthetics CI config file path'
-    required: true
+    required: false
+    default: ''
   datadogSite:
     description: 'DataDog Host Site'
-    required: true
+    required: false
+    default: ''
   failOnCriticalErrors:
     description: 'Set run to fail on critical errors'
-    required: true
+    required: false
+    default: false
   failOnTimeout:
     description: 'Set run to fail on timeout'
-    required: true
+    required: false
+    default: true
   files:
     description: 'Synthetic test run config files'
-    required: true
+    required: false
+    default: ''
   publicIds:
     description: 'Synthetic test public IDs'
-    required: true
+    required: false
+    default: ''
   search: 
     description: 'Search query'
-    required: true
+    required: false
+    default: ''
   subdomain:
     description: 'Custom subdomain to access DataDog'
-    required: true
+    required: false
+    default: ''
 runs:
   using: 'node12'
   main: 'index.js'
