@@ -61,6 +61,7 @@ runs:
           echo "::set-output name=REF::${PATH[-1]}"
         else
           echo "::set-output name=REF::$GITHUB_SHA"
+        fi
       shell: bash
       id: action-version
 
