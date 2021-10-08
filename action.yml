@@ -76,15 +76,15 @@ runs:
       run: |
         if [ "${{ inputs.configPath }}" != "" ] && [ -f "${{ inputs.configPath }}" ]; then
           echo "Config file ${{ inputs.configPath }} exists"
-          mv ${{ inputs.configPath }} OpenActions/dd-synthetics/src
+          mv ${{ inputs.configPath }} OpenActions/dd-synthetics/js
         elif [ "${{ inputs.configPath }}" = "" ] && [ -f "datadog-ci.json" ]; then
           echo "Config file datadog-ci.json exists"
-          mv datadog-ci.json OpenActions/dd-synthetics/src
+          mv datadog-ci.json OpenActions/dd-synthetics/js
         fi
       shell: bash
       
     - name: Run DataDog Action (JS)
-      uses: ./OpenActions/dd-synthetics/src
+      uses: ./OpenActions/dd-synthetics/js
       with:
         apiKey: ${{ inputs.apiKey }}
         appKey: ${{ inputs.appKey }}

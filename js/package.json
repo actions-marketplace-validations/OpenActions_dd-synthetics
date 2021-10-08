@@ -1,9 +1,9 @@
 {
   "name": "dd-synthetics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "OpenActions",
   "description": "DataDog Synthetics GitHub Action",
-  "main": "src/index.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "postinstall": "node-prune",

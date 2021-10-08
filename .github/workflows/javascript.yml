@@ -13,7 +13,7 @@ jobs:
         run: npm i -g @datadog/datadog-ci
 
       - name: DataDog Synthetics Action
-        uses: OpenActions/dd-synthetics/src@main
+        uses: OpenActions/dd-synthetics/js@main
         with:
           apiKey: ${{ secrets.DD_API_KEY }}
           appKey: ${{ secrets.DD_APP_KEY }}

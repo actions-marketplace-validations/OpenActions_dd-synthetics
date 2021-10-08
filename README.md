@@ -46,7 +46,7 @@ with:
   search: 'tag:e2e-tests'
 ```
 
-## Using JS Action
+## Using JavaScript Action
 
 You can also just use the JavaScript action by itself without the main action. However, you will need to install `@datadog/datadog-ci` NPM package globally in your workflow.
 
