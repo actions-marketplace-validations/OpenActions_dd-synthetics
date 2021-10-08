@@ -57,12 +57,14 @@ runs:
       run: |
         echo ${{ github.action_path }}
         IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
-        echo "::set-output name=REF::${PATH[-1]}"
+        if $(echo "${PATH[-1]}") == ''; then
+          echo "::set-output name=REF::${PATH[-1]}"
+        else
+          echo "::set-output name=REF::$GITHUB_SHA"
       shell: bash
       id: action-version
 
     - name: Checkout Actions Repo
-      if: ${{ steps.action-version.outputs.REF !== '' }}
       uses: actions/checkout@v2
       with:
         repository: OpenActions/dd-synthetics
@@ -70,23 +72,7 @@ runs:
         ref: ${{ steps.action-version.outputs.REF }}
       
     - name: Run DataDog Action (JS)
-      if: ${{ steps.action-version.outputs.REF !== '' }}
       uses: ./OpenActions/dd-synthetics/src
-      with:
-        apiKey: ${{ inputs.apiKey }}
-        appKey: ${{ inputs.appKey }}
-        config: ${{ inputs.configPath }}
-        datadogSite: ${{ inputs.datadogSite }}
-        failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
-        failOnTimeout: ${{ inputs.failOnTimeout }}
-        files: ${{ inputs.files }}
-        publicIds: ${{ inputs.publicIds }}
-        search: ${{ inputs.search }}
-        subdomain: ${{ inputs.subdomain }}
-
-    - name: Run Local DataDog Action (JS)
-      if: ${{ steps.action-version.outputs.REF === '' }}
-      uses: ./src
       with:
         apiKey: ${{ inputs.apiKey }}
         appKey: ${{ inputs.appKey }}
