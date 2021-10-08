@@ -49,9 +49,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install DataDog CI
-      run: npm i -g @datadog/datadog-ci
-      shell: bash
+    # - name: Install DataDog CI
+    #   run: npm i -g @datadog/datadog-ci
+    #   shell: bash
     - name: Output Variables
       run: |
         echo ${{ github.action }}
