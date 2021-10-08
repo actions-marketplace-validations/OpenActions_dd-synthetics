@@ -53,7 +53,7 @@ runs:
       run: npm i -g @datadog/datadog-ci
       shell: bash
     - name: Run DataDog Action (JS)
-      uses: ./src
+      uses: ${{ github.action_path }}/src
       with:
         apiKey: ${{ inputs.apiKey }}
         appKey: ${{ inputs.appKey }}
