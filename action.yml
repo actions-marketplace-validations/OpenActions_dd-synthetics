@@ -56,7 +56,7 @@ runs:
     - name: Get Action Version
       run: |
         echo ${{ github.action_path }}
-        IFS='/' read -r PATH <<< '${{ github.action_path }}'
+        IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
         echo $PATH[-1]
       shell: bash
 
