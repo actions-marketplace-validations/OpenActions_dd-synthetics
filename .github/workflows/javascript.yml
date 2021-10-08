@@ -1,0 +1,20 @@
+name: Deploy
+
+on: workflow_dispatch
+
+jobs:
+  dd_synthetics:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Install DataDog CI
+        run: npm i -g @datadog/datadog-ci
+
+      - name: DataDog Synthetics Action
+        uses: OpenActions/dd-synthetics/src@main
+        with:
+          apiKey: ${{ secrets.DD_API_KEY }}
+          appKey: ${{ secrets.DD_APP_KEY }}
+          search: 'tag:e2e-tests'
