@@ -16,7 +16,7 @@ inputs:
   configPath:
     description: 'DataDog Synthetics CI config file path'
     required: false
-    default: ''
+    default: 'datadog-ci.json'
   datadogSite:
     description: 'DataDog Host Site'
     required: false
@@ -71,6 +71,13 @@ runs:
         repository: OpenActions/dd-synthetics
         path: OpenActions/dd-synthetics
         ref: ${{ steps.action-version.outputs.REF }}
+
+    - name: Setup Config File
+      run: |
+        if [ "${{ inputs.configPath }}" != "" ] && [ -f "${{ inputs.configPath }}" ]; then
+          mv ${{ inputs.configPath }} OpenActions/dd-synthetics/src
+        fi
+      shell: bash
       
     - name: Run DataDog Action (JS)
       uses: ./OpenActions/dd-synthetics/src
