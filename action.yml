@@ -49,34 +49,39 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    # - name: Install DataDog CI
-    #   run: npm i -g @datadog/datadog-ci
-    #   shell: bash
+    - name: Install DataDog CI
+      run: npm i -g @datadog/datadog-ci
+      shell: bash
 
     - name: Get Action Version
       run: |
         echo ${{ github.action_path }}
         IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
-        echo "${PATH[-1]}"
+        echo "::set-output name=REF::${PATH[-1]}"
       shell: bash
+      id: action-version
 
-    # - name: Checkout Actions Repo
-    #   uses: actions/checkout@v2
-    #   with:
-    #     repository: OpenActions/dd-synthetics
-    #     path: dd-synthetics
-    #     ref: ${{  }}
+    - name: Checkout Actions Repo
+      uses: actions/checkout@v2
+      with:
+        repository: OpenActions/dd-synthetics
+        path: dd-synthetics
+        ref: ${{ steps.action-version.outputs.REF }}
       
-    # - name: Run DataDog Action (JS)
-    #   uses: OpenActions/dd-synthetics/src@
-    #   with:
-    #     apiKey: ${{ inputs.apiKey }}
-    #     appKey: ${{ inputs.appKey }}
-    #     config: ${{ inputs.configPath }}
-    #     datadogSite: ${{ inputs.datadogSite }}
-    #     failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
-    #     failOnTimeout: ${{ inputs.failOnTimeout }}
-    #     files: ${{ inputs.files }}
-    #     publicIds: ${{ inputs.publicIds }}
-    #     search: ${{ inputs.search }}
-    #     subdomain: ${{ inputs.subdomain }}
+    - name: Run DataDog Action (JS)
+      uses: ./dd-synthetics/src
+      with:
+        apiKey: ${{ inputs.apiKey }}
+        appKey: ${{ inputs.appKey }}
+        config: ${{ inputs.configPath }}
+        datadogSite: ${{ inputs.datadogSite }}
+        failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
+        failOnTimeout: ${{ inputs.failOnTimeout }}
+        files: ${{ inputs.files }}
+        publicIds: ${{ inputs.publicIds }}
+        search: ${{ inputs.search }}
+        subdomain: ${{ inputs.subdomain }}
+
+    - name: Cleanup Actions Repo
+      run: rm -rf dd-synthetics
+      shell: bash
