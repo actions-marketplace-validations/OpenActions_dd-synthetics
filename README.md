@@ -55,7 +55,7 @@ steps:
   - name: Install DataDog CI
     run: npm i -g @datadog/datadog-ci
     
-  - uses: OpenActions/dd-synthetics/src@v1.0.1
+  - uses: OpenActions/dd-synthetics/js@v1.0.1
     with:
       apiKey: ${{ secrets.DD_API_KEY }}
       appKey: ${{ secrets.DD_APP_KEY }}
