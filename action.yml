@@ -52,16 +52,21 @@ runs:
     - name: Install DataDog CI
       run: npm i -g @datadog/datadog-ci
       shell: bash
-    - name: Run DataDog Action (JS)
-      uses: ${{ github.action_path }}/src
-      with:
-        apiKey: ${{ inputs.apiKey }}
-        appKey: ${{ inputs.appKey }}
-        config: ${{ inputs.configPath }}
-        datadogSite: ${{ inputs.datadogSite }}
-        failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
-        failOnTimeout: ${{ inputs.failOnTimeout }}
-        files: ${{ inputs.files }}
-        publicIds: ${{ inputs.publicIds }}
-        search: ${{ inputs.search }}
-        subdomain: ${{ inputs.subdomain }}
+    - name: Output Variables
+      run: |
+        echo ${{ github.action }}
+        echo ${{ github.action_path }}
+      shell: bash
+    # - name: Run DataDog Action (JS)
+    #   uses: OpenActions/dd-synthetics/src@
+    #   with:
+    #     apiKey: ${{ inputs.apiKey }}
+    #     appKey: ${{ inputs.appKey }}
+    #     config: ${{ inputs.configPath }}
+    #     datadogSite: ${{ inputs.datadogSite }}
+    #     failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
+    #     failOnTimeout: ${{ inputs.failOnTimeout }}
+    #     files: ${{ inputs.files }}
+    #     publicIds: ${{ inputs.publicIds }}
+    #     search: ${{ inputs.search }}
+    #     subdomain: ${{ inputs.subdomain }}
