@@ -25,6 +25,9 @@ async function run() {
     proc.stdout.pipe(process.stdout);
 
     const [shellError, result] = await to(proc);
+
+    console.log('shellError', shellError, result);
+    
     if (shellError || result.stderr) {
       throw shellError || result.stderr;
     }
