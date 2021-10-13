@@ -26,10 +26,10 @@ async function run() {
 
     const [shellError, result] = await to(proc);
 
-    console.log('shellError', shellError, result);
-    
-    if (shellError || result.stderr) {
-      throw shellError || result.stderr;
+    const error = shellError || result.stderr || (result.stdout || '').includes('ERROR');
+    console.log('error', error);
+    if (error) {
+      throw error;
     }
   } catch (err) {
     core.setFailed(err.message);
