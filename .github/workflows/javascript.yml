@@ -20,7 +20,7 @@ jobs:
       - name: Install DataDog CI
         run: npm i -g @datadog/datadog-ci
 
-      - name: DataDog Synthetics Action
+      - name: Test DataDog Synthetics Action
         uses: ./js
         with:
           apiKey: ${{ secrets.DD_API_KEY }}
