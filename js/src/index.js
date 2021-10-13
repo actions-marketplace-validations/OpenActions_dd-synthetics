@@ -24,9 +24,9 @@ async function run() {
     const proc = shell.command(DD_CMD);
     proc.stdout.pipe(process.stdout);
 
-    const [shellError] = await to(proc);
-    if (shellError) {
-      throw shellError;
+    const [shellError, result] = await to(proc);
+    if (shellError || result.stderr) {
+      throw shellError || result.stderr;
     }
   } catch (err) {
     core.setFailed(err.message);

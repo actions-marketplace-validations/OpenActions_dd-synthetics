@@ -88,7 +88,7 @@ runs:
       with:
         apiKey: ${{ inputs.apiKey }}
         appKey: ${{ inputs.appKey }}
-        config: ${{ inputs.configPath }}
+        configPath: ${{ inputs.configPath }}
         datadogSite: ${{ inputs.datadogSite }}
         failOnCriticalErrors: ${{ inputs.failOnCriticalErrors }}
         failOnTimeout: ${{ inputs.failOnTimeout }}
