@@ -31,7 +31,7 @@ async function run() {
     core.endGroup();
 
     if (error) {
-      throw error;
+      throw error instanceof Error ? error : new Error(error);
     }
   } catch (err) {
     core.setFailed(err.message);
