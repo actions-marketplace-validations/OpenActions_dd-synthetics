@@ -72,4 +72,4 @@ npm run test
 
 ## Release
 
-Create a release from GitHub and follow SemVer to set the version of the action. When you create a release both the composite and JavaScript action with be deployed.
+Create a release from GitHub and follow SemVer to set the version of the action. When you create a release both the composite and JavaScript action will be deployed.
