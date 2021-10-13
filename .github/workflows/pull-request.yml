@@ -4,12 +4,19 @@ on:
   pull_request:
     branches: main
 
+env:
+  GLOBAL_NPM_DEPENDENCIES: 'node-prune'
+
 jobs:
   test-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Install Global Dependencies
+        if: ${{ env.GLOBAL_NPM_DEPENDENCIES != '' }}
+        run: npm i -g ${{ env.GLOBAL_NPM_DEPENDENCIES }}
 
       - name: Install Dependencies
         run: npm ci
