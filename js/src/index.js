@@ -28,12 +28,12 @@ async function run() {
 
     const outputError = (stdout || '').includes('ERROR') ? stdout : '';
     const error = shellError || stderr || outputError;
-    console.log('error', error);
+
     if (error) {
       throw error;
     }
   } catch (err) {
-    core.setFailed(err.message);
+    core.setFailed();
   }
 }
 
