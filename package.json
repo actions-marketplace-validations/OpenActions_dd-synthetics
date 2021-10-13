@@ -1,25 +1,29 @@
 {
   "name": "dd-synthetics",
   "version": "1.0.2",
-  "author": "OpenActions",
   "description": "DataDog Synthetics GitHub Action",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "postinstall": "node-prune",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "@actions/core": "^1.6.0",
-    "await-to-js": "^3.0.0",
-    "execa": "^5.1.1"
+    "test": "jest --config js/test/jest.conf.js --no-cache --passWithNoTests"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OpenActions/dd-synthetics.git"
   },
+  "keywords": [
+    "datadog",
+    "github",
+    "actions",
+    "ci",
+    "testing"
+  ],
+  "author": "OpenActions",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/OpenActions/dd-synthetics/issues"
   },
-  "homepage": "https://github.com/OpenActions/dd-synthetics#readme"
+  "homepage": "https://github.com/OpenActions/dd-synthetics#readme",
+  "devDependencies": {
+    "jest": "^27.2.5"
+  }
 }
