@@ -1,6 +1,12 @@
-name: Development
+name: Composite Action
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run action'
+        required: true
+        default: 'main'
 
 jobs:
   dd_synthetics:
@@ -8,6 +14,8 @@ jobs:
     steps: 
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Test dd-synthetics Action
         uses: ./

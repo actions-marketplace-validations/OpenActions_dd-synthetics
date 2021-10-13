@@ -70,6 +70,10 @@ Run test from the root directory and not the `js` folder as we do not want to in
 npm run test
 ```
 
+## Test Action
+
+Run the `composite.yml` or `javascript.yml` workflow with the `workflow_dispatch` set to the branch you are working on. Both of these workflows will run the local version of the action. Currently the action will fail locally due to the repository not having a valid DataDog credential. You want to see that the command runs properly and the error is handled appropriately.
+
 ## Release
 
 Create a release from GitHub and follow SemVer to set the version of the action. When you create a release both the composite and JavaScript action will be deployed.

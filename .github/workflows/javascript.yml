@@ -1,6 +1,12 @@
-name: JS Action Deploy
+name: JavaScript Action
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run action'
+        required: true
+        default: 'main'
 
 jobs:
   dd_synthetics:
@@ -8,12 +14,14 @@ jobs:
     steps: 
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Install DataDog CI
         run: npm i -g @datadog/datadog-ci
 
       - name: DataDog Synthetics Action
-        uses: OpenActions/dd-synthetics/js@main
+        uses: ./js
         with:
           apiKey: ${{ secrets.DD_API_KEY }}
           appKey: ${{ secrets.DD_APP_KEY }}
