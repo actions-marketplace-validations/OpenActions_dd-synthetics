@@ -34,8 +34,7 @@ async function run() {
       throw error;
     }
   } catch (err) {
-    core.error(err.message);
-    core.setFailed();
+    core.setFailed(err.message);
   }
 }
 
