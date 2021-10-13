@@ -34,7 +34,8 @@ async function run() {
       throw error instanceof Error ? error : new Error(error);
     }
   } catch (err) {
-    core.setFailed(err.message);
+    core.error(error.message);
+    core.setFailed();
   }
 }
 
