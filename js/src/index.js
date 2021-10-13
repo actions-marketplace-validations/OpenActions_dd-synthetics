@@ -24,9 +24,10 @@ async function run() {
     const proc = shell.command(DD_CMD);
     proc.stdout.pipe(process.stdout);
 
-    const [shellError, result] = await to(proc);
+    const [shellError, { stderr, stdout }] = await to(proc);
 
-    const error = shellError || result.stderr || (result.stdout || '').includes('ERROR');
+    const outputError = (stdout || '').includes('ERROR') ? stdout : '';
+    const error = shellError || stderr || outputError;
     console.log('error', error);
     if (error) {
       throw error;
