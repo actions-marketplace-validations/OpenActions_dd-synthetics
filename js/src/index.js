@@ -19,7 +19,7 @@ async function run() {
     };
 
     const DD_CMD = getCommand(datadogArgs);
-    console.log('> ', DD_CMD);
+    core.startGroup(DD_CMD);
 
     const proc = shell.command(DD_CMD);
     proc.stdout.pipe(process.stdout);
@@ -28,12 +28,13 @@ async function run() {
 
     const outputError = (stdout || '').includes('ERROR') ? stdout : '';
     const error = shellError || stderr || outputError;
+    core.endGroup();
 
     if (error) {
-      throw error;
+      throw error instanceof Error ? error : new Error(error);
     }
   } catch (err) {
-    core.setFailed();
+    core.setFailed(err.message);
   }
 }
 
