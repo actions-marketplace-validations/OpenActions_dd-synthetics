@@ -61,3 +61,15 @@ steps:
       appKey: ${{ secrets.DD_APP_KEY }}
       search: 'tag:e2e-tests'
 ```
+
+## Test Locally
+
+Run test from the root directory and not the `js` folder as we do not want to increase the `node_modules` size for the JS action.
+
+```sh
+npm run test
+```
+
+## Release
+
+Create a release from GitHub and follow SemVer to set the version of the action. When you create a release both the composite and JavaScript action with be deployed.
