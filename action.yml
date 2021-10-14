@@ -64,6 +64,7 @@ runs:
         if [ "${PATH[-1]}" != "." ] && [ "${PATH[-1]}" != "" ]; then
           echo "::set-output name=REF::${PATH[-1]}"
         else
+          echo ${{ env.DD_ACTION_REF }}
           echo "::set-output name=REF::${{ inputs.branch }}"
         fi
       shell: bash
@@ -75,19 +76,6 @@ runs:
         repository: OpenActions/dd-synthetics
         path: OpenActions/dd-synthetics
         ref: ${{ steps.action-version.outputs.REF }}
-
-    - name: Setup Config File
-      run: |
-        if [ "${{ inputs.configPath }}" != "" ] && [ -f "${{ inputs.configPath }}" ]; then
-          echo "Config file ${{ inputs.configPath }} exists"
-          mv ${{ inputs.configPath }} OpenActions/dd-synthetics/js
-        elif [ "${{ inputs.configPath }}" = "" ] && [ -f "datadog-ci.json" ]; then
-          echo "Config file datadog-ci.json exists"
-          mv datadog-ci.json OpenActions/dd-synthetics/js
-        fi
-      shell: bash
-
-    # Add File Move
       
     - name: Run DataDog Action (JS)
       uses: ./OpenActions/dd-synthetics/js
