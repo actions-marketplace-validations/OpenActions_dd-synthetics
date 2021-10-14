@@ -18,8 +18,6 @@ async function run() {
       subdomain: core.getInput('subdomain'),
     };
 
-    console.log('cwd', process.cwd());
-
     const DD_CMD = getCommand(datadogArgs);
     core.startGroup(DD_CMD);
 
