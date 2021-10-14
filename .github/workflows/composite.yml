@@ -17,7 +17,7 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
 
-      - name: Test dd-synthetics Action
+      - name: Test DataDog Synthetics Action
         uses: ./
         with:
           apiKey: ${{ secrets.DD_API_KEY }}

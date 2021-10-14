@@ -82,6 +82,8 @@ runs:
           mv datadog-ci.json OpenActions/dd-synthetics/js
         fi
       shell: bash
+
+    # Add File Move
       
     - name: Run DataDog Action (JS)
       uses: ./OpenActions/dd-synthetics/js
