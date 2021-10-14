@@ -39,7 +39,7 @@ https://github.com/DataDog/datadog-ci/tree/master/src/commands/synthetics#api
 ## Example Usage
 
 ```yml
-uses: OpenActions/dd-synthetics@v1.0.3
+uses: OpenActions/dd-synthetics@v1.0.4
 with:
   apiKey: ${{ secrets.DD_API_KEY }}
   appKey: ${{ secrets.DD_APP_KEY }}
@@ -55,7 +55,7 @@ steps:
   - name: Install DataDog CI
     run: npm i -g @datadog/datadog-ci
     
-  - uses: OpenActions/dd-synthetics/js@v1.0.3
+  - uses: OpenActions/dd-synthetics/js@v1.0.4
     with:
       apiKey: ${{ secrets.DD_API_KEY }}
       appKey: ${{ secrets.DD_APP_KEY }}
