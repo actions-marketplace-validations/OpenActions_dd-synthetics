@@ -45,6 +45,10 @@ inputs:
     description: 'Custom subdomain to access DataDog'
     required: false
     default: ''
+  branch:
+    description: 'Local branch to run composite action'
+    required: false
+    default: $GITHUB_SHA
     
 runs:
   using: 'composite'
@@ -59,15 +63,11 @@ runs:
         IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
         if [ "${PATH[-1]}" != "." ] && [ "${PATH[-1]}" != "" ]; then
           echo "::set-output name=REF::${PATH[-1]}"
-        elif [ "${{ env.BRANCH }}" != "" ]; then
-          echo "::set-output name=REF::${{ env.BRANCH }}"
         else
-          echo "::set-output name=REF::$GITHUB_SHA"
+          echo "::set-output name=REF::${{ inputs.branch }}"
         fi
       shell: bash
       id: action-version
-      env: 
-        BRANCH: ${{ env.DD_ACTION_BRANCH }}
 
     - name: Checkout Actions Repo
       uses: actions/checkout@v2
