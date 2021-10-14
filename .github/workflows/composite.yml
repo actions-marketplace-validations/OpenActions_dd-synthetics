@@ -24,3 +24,5 @@ jobs:
           appKey: ${{ secrets.DD_APP_KEY }}
           search: 'tag:e2e-tests'
           branch: ${{ github.event.inputs.branch }}
+        env:
+          DD_ACTION_REF: ${{ github.event.inputs.branch }}
