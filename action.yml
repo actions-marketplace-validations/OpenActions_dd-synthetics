@@ -53,12 +53,14 @@ runs:
       run: npm i -g @datadog/datadog-ci
       shell: bash
 
-    - name: Get Action Version
+    - name: Get JavaScript Action Version
       run: |
         echo ${{ github.action_path }}
         IFS='/' read -r -a PATH <<< '${{ github.action_path }}'
         if [ "${PATH[-1]}" != "." ] && [ "${PATH[-1]}" != "" ]; then
           echo "::set-output name=REF::${PATH[-1]}"
+        elif [ "${{ env.DD_ACTION_REF }}" != "" ]; then
+          echo "::set-output name=REF::${{ env.DD_ACTION_REF }}"
         else
           echo "::set-output name=REF::$GITHUB_SHA"
         fi
@@ -71,17 +73,6 @@ runs:
         repository: OpenActions/dd-synthetics
         path: OpenActions/dd-synthetics
         ref: ${{ steps.action-version.outputs.REF }}
-
-    - name: Setup Config File
-      run: |
-        if [ "${{ inputs.configPath }}" != "" ] && [ -f "${{ inputs.configPath }}" ]; then
-          echo "Config file ${{ inputs.configPath }} exists"
-          mv ${{ inputs.configPath }} OpenActions/dd-synthetics/js
-        elif [ "${{ inputs.configPath }}" = "" ] && [ -f "datadog-ci.json" ]; then
-          echo "Config file datadog-ci.json exists"
-          mv datadog-ci.json OpenActions/dd-synthetics/js
-        fi
-      shell: bash
       
     - name: Run DataDog Action (JS)
       uses: ./OpenActions/dd-synthetics/js

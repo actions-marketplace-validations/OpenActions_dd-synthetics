@@ -17,12 +17,11 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
 
-      - name: Test dd-synthetics Action
+      - name: Test DataDog Synthetics Action
         uses: ./
         with:
           apiKey: ${{ secrets.DD_API_KEY }}
           appKey: ${{ secrets.DD_APP_KEY }}
-          search: 'tag:e2e-tests'
-          branch: ${{ github.event.inputs.branch }}
+          search: 'tag:e2e-tests'   
         env:
           DD_ACTION_REF: ${{ github.event.inputs.branch }}
