@@ -46,7 +46,7 @@ inputs:
     required: false
     default: ''
   branch:
-    description: 'Local branch to run composite action'
+    description: 'Branch to run composite action'
     required: false
     default: $GITHUB_SHA
     
