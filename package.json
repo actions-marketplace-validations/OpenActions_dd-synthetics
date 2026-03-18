@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/OpenActions/dd-synthetics#readme",
   "devDependencies": {
-    "jest": "^29.5.0"
+    "jest": "^30.3.0"
   }
 }
